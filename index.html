@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Convite!</title>
+  <style>
+    .invitation-container {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .yes-button, .no-button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .yes-button {
+      background-color: #4CAF50;
+      color: #fff;
+    }
+
+    .no-button {
+      background-color: #ccc;
+      color: #333;
+    }
+
+    .response-container {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background-color: #f9f9f9;
+      display: none;
+    }
+
+    .password-container {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .password-container input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: calc(100% - 22px);
+      margin-bottom: 20px;
+    }
+
+    .password-container button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #6806c4;
+      color: #fff;
+    }
+
+    .error-message {
+      color: red;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="password-container" id="password-container">
+    <h1>Joga a senha aí, minha parceira</h1>
+    <input type="password" id="password-input" placeholder="Senha">
+    <button id="submit-password">Entrar</button>
+    <p class="error-message" id="error-message">Tá moscando com a senha errada é. Tenta de novo que eu sei, que tu sabe escrever teu nome.</p>
+  </div>
+
+  <div class="invitation-container" id="invitation-container" style="display: none;">
+    <h1>Vamo beber um vinho hoje (você não pode ir embora depois)!</h1>
+    <p>Olá xuxu,</p>
+    <p>Eu estava pensando, por que não passar a noite comigo e desfrutar de um copo de vinho juntos?</p>
+    <button class="yes-button" id="yes-btn">Sim, eu adoraria!</button>
+    <button class="no-button" id="no-btn">Não, obrigado.</button>
+    <div class="response-container" id="response-container"></div>
+  </div>
+
+  <script>
+    const correctPassword = "clara";
+    const passwordInput = document.getElementById('password-input');
+    const submitPasswordBtn = document.getElementById('submit-password');
+    const errorMessage = document.getElementById('error-message');
+    const passwordContainer = document.getElementById('password-container');
+    const invitationContainer = document.getElementById('invitation-container');
+
+    submitPasswordBtn.addEventListener('click', () => {
+      if (passwordInput.value === correctPassword) {
+        passwordContainer.style.display = 'none';
+        invitationContainer.style.display = 'block';
+      } else {
+        errorMessage.style.display = 'block';
+      }
+    });
+
+    const yesBtn = document.getElementById('yes-btn');
+    const noBtn = document.getElementById('no-btn');
+    const responseContainer = document.getElementById('response-container');
+    const whatsappNumber = "+5571997249766"; // seu número do WhatsApp
+
+    yesBtn.addEventListener('click', () => {
+      const message = "Sim, eu adoraria!";
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    });
+
+    noBtn.addEventListener('click', () => {
+      responseContainer.textContent = "Para com isso que você não tem escolha!!!!";
+      responseContainer.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
